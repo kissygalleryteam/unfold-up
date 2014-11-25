@@ -3,7 +3,60 @@
 <head>
     <meta charset="utf-8"/>
     <title>UnfoldUp的demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <script src="http://g.tbcdn.cn/kissy/k/1.4.6/seed-min.js" charset="utf-8"></script>
+    <style>
+        body{
+            background: #695D9B;
+            color: #fff;
+        }
+        
+        .effect-unfold-up{
+            /*border: 2px solid #fff;*/
+            position: relative;
+            padding-bottom: 40px;
+            overflow: hidden;
+        }
+        .effect-unfold-up.close{
+            height: 0;
+        }
+        .effect-unfold-up .effect-unfold-up-bar{
+            /*border-top: 2px solid #fff;*/
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            text-align: center;
+            background: #000;
+            cursor: pointer;
+        }
+        .effect-unfold-up .effect-unfold-up-bar .text:after{
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-left: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+        }
+        .effect-unfold-up.close .effect-unfold-up-bar .text:after{
+            transform: rotate(-45deg) translateY(-5px);
+            margin-left: 10px;
+        }
+        .effect-unfold-up.open .effect-unfold-up-bar .text:after{
+            transform: rotate(135deg) translateY(-5px);
+            margin-left: 5px;
+        }
+        .effect-unfold-up .effect-unfold-up-content{
+            padding: 10px;
+            background: #000;
+            opacity: .5;
+        }
+        
+    </style>
 </head>
 <body>
 <h2>UnfoldUp的demo</h2>
@@ -23,11 +76,85 @@
             ]
         });
     }
+</script>
 
-    S.use('kg/unfold-up/1.0.0/index', function (S, UnfoldUp) {
-        new UnfoldUp();
+<h4>默认关闭</h4>
+<div id="demo1">
+    <div class="effect-unfold-up close">
+        <div class="effect-unfold-up-content">
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+        </div>
+        <div class="effect-unfold-up-bar">
+            <span class="text">展开</span>
+        </div>
+    </div>
+</div>
+<script>
+    S.use('node,kg/unfold-up/1.0.0/index', function (S, Node, UnfoldUp) {
+        var $ = Node.all;
+        var unfoldUp = new UnfoldUp({
+            min: 0,
+            max: 260,
+            closeable: true,
+            container: '#demo1 .effect-unfold-up',
+            action: '#demo1 .effect-unfold-up-bar'
+        });
+        unfoldUp.on('close',function(){
+            this.get('container').replaceClass('open','close');
+            this.get('action').all('span').text('展开');
+        });
+        unfoldUp.on('open',function(){
+            this.get('container').replaceClass('close','open');
+            this.get('action').all('span').text('收起');
+        });
     })
 </script>
+
+<h4>默认展开</h4>
+<div id="demo2">
+    <div class="effect-unfold-up open">
+        <div class="effect-unfold-up-content">
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+            <p>测试文本</p>
+        </div>
+        <div class="effect-unfold-up-bar">
+            <span class="text">收起</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    S.use('node,kg/unfold-up/1.0.0/index', function (S, Node, UnfoldUp) {
+        var $ = Node.all;
+        var unfoldUp = new UnfoldUp({
+            min: 0,
+            max: 260,
+            closeable: false,
+            container: '#demo2 .effect-unfold-up',
+            action: '#demo2 .effect-unfold-up-bar'
+        });
+        unfoldUp.on('close',function(){
+            this.get('container').replaceClass('open','close');
+            this.get('action').all('span').text('展开');
+        });
+        unfoldUp.on('open',function(){
+            this.get('container').replaceClass('close','open');
+            this.get('action').all('span').text('收起');
+        });
+    })
+</script>
+
 </body>
 </html>
 
