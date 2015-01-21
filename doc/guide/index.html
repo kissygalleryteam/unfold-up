@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>unfold-up</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com-prettify.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdn.staticfile.org/prettify/r298/prettify.min.js"></script>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.8/seed-min.js" data-config="{combine:true}"></script>
+  </head>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <div id="header"><a href="http://docs.kissyui.com/" class="logo">kissy</a>
+      <nav><a href="http://docs.kissyui.com/1.4/docs/html/coms.html">优秀组件推荐</a></nav>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3 bs-docs-sidebar">
+          <ul data-spy="affix" data-offset-top="0" class="nav nav-list bs-docs-sidenav"></ul>
+        </div>
+        <div class="span9 bs-docs-content">
+          <h1 data-id="undefined" class="title">unfold-up</h1>
+          <p class="author-wrapper"><span>组件有问题？旺旺联系作者：</span><a href="https://github.com/gafish" target="_blank" data-name="圆影" class="author"><img src="https://avatars.githubusercontent.com/u/1989426?v=2&amp;s=60" alt="圆影"></a><span class="author-name">圆影</span>
+          </p>
+          <div class="common-link"><a href="../demo/index.html" target="_blank" class="demo">示例</a><a href="https://github.com/kissygalleryteam/unfold-up" target="_blank" class="source">源码</a></div>
+          <p class="com-info"><span class="info-label">View</span><span data-com="unfold-up" class="J_View">236</span></p>
+          <p class="com-info"><span class="info-label">所属分类</span><a href="http://kpm.taobao.net/list/动画&amp;效果">动画&amp;效果</a>
+          </p>
+          <p class="com-info"><span class="info-label">kissy版本</span><span>1.4.X</span>
+          </p><h2 id="-">综述</h2>
+<p>UnfoldUp是动效组件库基础动效之一，它展示的是上下展开收起的动画效果。</p>
+<h2 id="-">初始化组件</h2>
+<pre><code class="lang-HTML">    &lt;div id=&quot;demo1&quot;&gt;
+        &lt;div class=&quot;effect-unfold-up close&quot;&gt;
+            &lt;div class=&quot;effect-unfold-up-content&quot;&gt;
+                &lt;p&gt;测试文本&lt;/p&gt;
+                &lt;p&gt;测试文本&lt;/p&gt;
+                &lt;p&gt;测试文本&lt;/p&gt;
+                &lt;p&gt;测试文本&lt;/p&gt;
+                &lt;p&gt;测试文本&lt;/p&gt;
+                &lt;p&gt;测试文本&lt;/p&gt;
+                &lt;p&gt;测试文本&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;effect-unfold-up-bar&quot;&gt;
+                &lt;span class=&quot;text&quot;&gt;展开&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+</code></pre>
+<pre><code class="lang-Javascript">    S.use(&#39;kg/unfold-up/1.0.0/index&#39;, function (S, UnfoldUp) {
+        var unfoldUp = new UnfoldUp({
+            min: 0,
+            max: 260,
+            closeable: true,
+            container: &#39;#demo1 .effect-unfold-up&#39;,
+            action: &#39;#demo1 .effect-unfold-up-bar&#39;
+        });
+        unfoldUp.on(&#39;close&#39;,function(){
+            this.get(&#39;container&#39;).replaceClass(&#39;open&#39;,&#39;close&#39;);
+            this.get(&#39;action&#39;).all(&#39;span&#39;).text(&#39;展开&#39;);
+        });
+        unfoldUp.on(&#39;open&#39;,function(){
+            this.get(&#39;container&#39;).replaceClass(&#39;close&#39;,&#39;open&#39;);
+            this.get(&#39;action&#39;).all(&#39;span&#39;).text(&#39;收起&#39;);
+        });
+    })
+</code></pre>
+<h2 id="api-">API说明</h2>
+<p><strong>Event</strong></p>
+<ul>
+<li><p>close
+  收起后触发close事件</p>
+</li>
+<li><p>open
+  展开后触发open事件</p>
+</li>
+</ul>
+
+          <div style="display:none;"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=36378479" charset="UTF-8"></script></div>
+          <script src="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.js"></script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
